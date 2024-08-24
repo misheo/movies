@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class ButtonNavigator extends StatelessWidget {
-  const ButtonNavigator({super.key});
+class ButtonNavigatorScreen extends StatelessWidget {
+  const ButtonNavigatorScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ButtonNavigator'),
+        title: Text('ButtonNavigatorScreen'),
       ),
       body: Center(
-        child: Text('ButtonNavigator'),
+        child: Text('ButtonNavigatorScreen'),
       ),
 
       bottomNavigationBar: BottomNavigationBar(
