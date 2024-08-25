@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/features/home/view/home_screen.dart';
+
+import '../home/view/home_screen.dart';
 
 class Pages {
   static Widget home = HomeScreen(); 
