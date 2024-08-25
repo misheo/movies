@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
 
-class ButtonNavigatorScreen extends StatelessWidget {
+import 'pages.dart';
+
+class ButtonNavigatorScreen extends StatefulWidget {
   const ButtonNavigatorScreen({super.key});
+
+  @override
+  State<ButtonNavigatorScreen> createState() => _ButtonNavigatorScreenState();
+}
+
+class _ButtonNavigatorScreenState extends State<ButtonNavigatorScreen> {
+  int index = 0;
+  List<Widget> pages = [
+    Pages.home,
+    Pages.search,
+    Pages.browse,
+    Pages.watchList
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ButtonNavigatorScreen'),
-      ),
-      body: Center(
-        child: Text('ButtonNavigatorScreen'),
-      ),
-
+      body: pages[index],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: index,
+        onTap: (value) {
+          setState(() {
+            index = value;
+          });
+        },
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
