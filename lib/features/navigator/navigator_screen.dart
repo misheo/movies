@@ -10,24 +10,22 @@ class ButtonNavigatorScreen extends StatefulWidget {
 }
 
 class _ButtonNavigatorScreenState extends State<ButtonNavigatorScreen> {
-  int index = 0 ; 
-  List <Widget> pages =  [
-    Pages.home , 
-    Pages.search ,
-    Pages.browse ,
+  int index = 0;
+  List<Widget> pages = [
+    Pages.home,
+    Pages.search,
+    Pages.browse,
     Pages.watchList
-  ] ; 
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   
       body: pages[index],
-
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
         onTap: (value) {
           setState(() {
-            index = value ; 
+            index = value;
           });
         },
         items: const <BottomNavigationBarItem>[
