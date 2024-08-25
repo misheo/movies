@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../core/models/movie.dart';
+import '../../../core/models/movie.dart';
 
 part 'movie_response_body.g.dart';
 @JsonSerializable()
