@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../features/home/data/repo/popular_movie_impl.dart';
+import '../../features/home/viewmodel/popular/popular_cubit.dart';
 import '../networking/api_constants.dart';
 import '../networking/api_service.dart';
 import '../networking/dio_factory.dart';
@@ -13,4 +15,10 @@ Future<void> setupGetIt() async {
         dio,
         baseUrl: ApiConstants.apiBaseUrl,
       ));
+  getIt.registerLazySingleton<PopularMovieRepoImpl>(
+    () => PopularMovieRepoImpl(getIt()),
+  );
+  getIt.registerLazySingleton<PopularCubit>(
+    () => PopularCubit(getIt()),
+  );
 }
