@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/home/data/repo/popular_movie_impl.dart';
+import '../../features/home/data/repo/recommended_repo_imp.dart';
+import '../../features/home/data/repo/release_movie_repo_imp.dart';
 import '../../features/home/viewmodel/popular/popular_cubit.dart';
 import '../networking/api_constants.dart';
 import '../networking/api_service.dart';
@@ -20,5 +22,11 @@ Future<void> setupGetIt() async {
   );
   getIt.registerLazySingleton<PopularCubit>(
     () => PopularCubit(getIt()),
+  );
+  getIt.registerLazySingleton<ReleaseMovieRepoImp>(
+    () => ReleaseMovieRepoImp(getIt()),
+  );
+  getIt.registerLazySingleton<RecommendedRepoImp>(
+    () => RecommendedRepoImp(getIt()),
   );
 }
