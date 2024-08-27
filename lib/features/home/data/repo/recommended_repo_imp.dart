@@ -6,10 +6,10 @@ import '../../../../core/networking/api_service.dart';
 import '../movie_response_body.dart';
 import 'recommended_repo.dart';
 
-class ReleaseMovieRepoImp implements RecommendedRepo {
+class RecommendedRepoImp implements RecommendedRepo {
   final ApiService _apiService;
 
-  ReleaseMovieRepoImp(this._apiService);
+  RecommendedRepoImp(this._apiService);
   @override
   Future<ApiResult<MovieResponseBody>> getRecommendedMovies(int page) async{
     String authorization = ApiConstants.authorization;
