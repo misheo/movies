@@ -4,6 +4,8 @@ class ApiConstants {
   static const String authorization =
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZjIzMGJlNGM1NDNmYzEyNmNjODg0OTI1ZWZlODAzMiIsIm5iZiI6MTcyNDU0MDkxOC4xODg2MDQsInN1YiI6IjY2Y2E2NWUyYmI0Yzk2YTdjZjBkMmQxZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oomLrpTIelNZC1RO9XN7HWoZGQ_0adrUVYxqPcLaya4";
   static const popular = '3/movie/popular';
+  static const upcoming = '3/movie/upcoming';
+  static const recommended = '3/movie/top_rated';
 }
 
 class ApiErrors {

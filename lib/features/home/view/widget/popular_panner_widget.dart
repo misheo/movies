@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/widgets/loading_widget.dart';
 import 'package:movies/features/home/data/movie_response_body.dart';
+import 'package:movies/features/home/view/widget/movie_poster.dart';
 import 'package:movies/features/home/viewmodel/popular/popular_cubit.dart';
 
 import '../../../../core/networking/api_constants.dart';
@@ -55,14 +56,18 @@ class _PopularPannerWidgetState extends State<PopularPannerWidget> {
               ),
               Positioned(
                 bottom: 0,
-                left: 0,
-                child: Container(
-                  height: 100.h,
-                  decoration: BoxDecoration(
-                    
-                  ),
-                ),
-              )
+                left:21,
+                child: MoviePosterWidget(movie: movie.results![0],width: 129.w, height: 200.h,)
+              ) , 
+              Positioned(
+                left: 195.w,
+                bottom: 20.h,
+                child: Column(
+                children: [
+                  Text(movie.results![0].title ?? '', style: TextStyle(color: Colors.white, fontSize: 14.sp),),
+                  Text('${movie.results![0].releaseDate ?? ''} | ${movie.results![0].popularity}', style: TextStyle(color: Colors.white, fontSize: 12.sp),),
+                ]
+              ))
             ]),
           );
         } else {

@@ -12,5 +12,17 @@ abstract class ApiService {
   @GET(ApiConstants.popular)
   Future<MovieResponseBody> getPopularMovies(
       @Header('Authorization') String authorization);
+  @GET(ApiConstants.recommended)
+  Future<MovieResponseBody> getRecommendedMovies(
+      @Header('Authorization') String authorization , 
+      @Query('page') int page , 
+      );
+
+  @GET(ApiConstants.popular)
+  Future<MovieResponseBody> getUpcomingMovies(
+      @Header('Authorization') String authorization,
+      @Query('page') int page , 
+      );
+      
 
 }
