@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'widget/new_release_widget.dart';
 import 'widget/popular_panner_widget.dart';
+import 'widget/recommended_movies.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,7 +16,9 @@ class HomeScreen extends StatelessWidget {
           children: [
             PopularPannerWidget(),
             SizedBox(height: 20.h),
-            NewReleaseWidget()
+            NewReleaseWidget() , 
+            SizedBox(height: 20.h),
+            RecommendedMoviesWidget()
           ],
         ),
       ),
