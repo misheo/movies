@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../features/home/data/movie_response_body.dart';
 import 'api_constants.dart';
 
 part 'api_service.g.dart';
@@ -9,6 +10,7 @@ part 'api_service.g.dart';
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
   @GET(ApiConstants.popular)
-  Future<dynamic> getPopularMovies(
+  Future<MovieResponseBody> getPopularMovies(
       @Header('Authorization') String authorization);
+
 }
