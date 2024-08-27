@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'widget/popular_panner_widget.dart';
 
@@ -10,7 +11,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: [PopularPannerWidget()],
+          children: [
+            PopularPannerWidget(),
+            SizedBox(height: 20.h),
+            
+          ],
         ),
       ),
     );
