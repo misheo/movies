@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'widget/new_release_widget.dart';
 import 'widget/popular_panner_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             PopularPannerWidget(),
             SizedBox(height: 20.h),
-            
+            NewReleaseWidget()
           ],
         ),
       ),
