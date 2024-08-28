@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:movies/core/models/movie.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../features/home/data/movie_response_body.dart';
@@ -14,15 +15,22 @@ abstract class ApiService {
       @Header('Authorization') String authorization);
   @GET(ApiConstants.recommended)
   Future<MovieResponseBody> getRecommendedMovies(
-      @Header('Authorization') String authorization , 
-      @Query('page') int page , 
-      );
+    @Header('Authorization') String authorization,
+    @Query('page') int page,
+  );
 
   @GET(ApiConstants.popular)
   Future<MovieResponseBody> getUpcomingMovies(
+    @Header('Authorization') String authorization,
+    @Query('page') int page,
+  );
+    @GET(ApiConstants.movieDetails)
+  Future<Movie> getMovieDetails(
       @Header('Authorization') String authorization,
-      @Query('page') int page , 
-      );
-      
-
+      @Path('movie_id') int movieId);
+  @GET(ApiConstants.recommended)
+  Future<MovieResponseBody> getSimilar(
+    @Header('Authorization') String authorization,
+    @Query('page') int page,
+  );
 }
