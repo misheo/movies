@@ -23,9 +23,9 @@ class DetailsScreenRepoImp implements DetailsScreenRepo {
   }
 
   @override
-  Future<ApiResult<MovieResponseBody>> getSimilar(int movieId) async {
+  Future<ApiResult<MovieResponseBody>> getSimilar(int movieId , int page) async {
     try {
-      final response = await _apiService.getSimilar(auth, 1);
+      final response = await _apiService.getSimilar(auth, movieId, page);
       return ApiResult.success(response);
     } on DioException catch (e) {
       return ApiResult.failure(e.toString());

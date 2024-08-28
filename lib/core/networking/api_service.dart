@@ -24,13 +24,13 @@ abstract class ApiService {
     @Header('Authorization') String authorization,
     @Query('page') int page,
   );
-    @GET(ApiConstants.movieDetails)
-  Future<Movie> getMovieDetails(
-      @Header('Authorization') String authorization,
+  @GET(ApiConstants.movieDetails)
+  Future<Movie> getMovieDetails(@Header('Authorization') String authorization,
       @Path('movie_id') int movieId);
   @GET(ApiConstants.recommended)
   Future<MovieResponseBody> getSimilar(
     @Header('Authorization') String authorization,
+    @Path('movie_id') int movieId,
     @Query('page') int page,
   );
 }

@@ -171,6 +171,7 @@ class _ApiService implements ApiService {
   @override
   Future<MovieResponseBody> getSimilar(
     String authorization,
+    int movieId,
     int page,
   ) async {
     final _extra = <String, dynamic>{};

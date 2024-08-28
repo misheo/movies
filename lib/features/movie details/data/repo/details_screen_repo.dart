@@ -5,6 +5,6 @@ import '../../../../core/models/movie.dart';
 
 abstract class DetailsScreenRepo {
   Future<ApiResult<Movie>> getMovieDetails(int movieId);
-  Future<ApiResult<MovieResponseBody>> getSimilar(int movieId);
+  Future<ApiResult<MovieResponseBody>> getSimilar(int movieId , int page );
   
 }
