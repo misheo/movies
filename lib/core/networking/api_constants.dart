@@ -6,6 +6,8 @@ class ApiConstants {
   static const popular = '3/movie/popular';
   static const upcoming = '3/movie/upcoming';
   static const recommended = '3/movie/top_rated';
+  static const similar = '3/movie/{movie_id}/similar';
+  static const movieDetails = '3/movie/{movie_id}';
 }
 
 class ApiErrors {

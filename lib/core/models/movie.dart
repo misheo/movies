@@ -1,31 +1,37 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'genre.dart';
+
 part 'movie.g.dart';
+
 @JsonSerializable()
 class Movie {
-  bool? adult;
+  final bool? adult;
   @JsonKey(name: 'backdrop_path')
-  String? backdropPath;
+  final String? backdropPath;
   @JsonKey(name: 'genre_ids')
-  List<int>? genreIds;
-  int? id;
+  final List<int>? genreIds;
+  final int? id;
   @JsonKey(name: 'original_language')
-  String? originalLanguage;
+  final String? originalLanguage;
   @JsonKey(name: 'original_title')
-  String? originalTitle;
-  String? overview;
-  double? popularity;
+  final String? originalTitle;
+  final String? overview;
+  final double? popularity;
   @JsonKey(name: 'poster_path')
-  String? posterPath;
+  final String? posterPath;
   @JsonKey(name: 'release_date')
-  String? releaseDate;
-  String? title;
-  bool? video;
+  final String? releaseDate;
+  final String? title;
+  final List<Genre>? genres;
+  final String? homepage;
+  final bool? video;
   @JsonKey(name: 'vote_average')
-  double? voteAverage;
+  final double? voteAverage;
   @JsonKey(name: 'vote_count')
-  int? voteCount;
-  Movie(this.adult,
+  final int? voteCount;
+  Movie(
+      this.adult,
       this.backdropPath,
       this.genreIds,
       this.id,
@@ -38,7 +44,9 @@ class Movie {
       this.title,
       this.video,
       this.voteAverage,
-      this.voteCount);
+      this.voteCount,
+      this.genres,
+      this.homepage);
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
   Map<String, dynamic> toJson() => _$MovieToJson(this);
