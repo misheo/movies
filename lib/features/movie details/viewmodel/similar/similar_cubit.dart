@@ -14,16 +14,15 @@ class SimilarCubit extends Cubit<SimilarState> {
   List<Movie> movies = [];
   int page = 1;
   bool hasMore = true;
-  bool _isFetching = false; // To track if a request is in progress
+  bool _isFetching = false;
 
   Future<void> getSimilar(int movieId, {bool isPagination = false}) async {
     if (!hasMore && isPagination) return;
-
-    if (_isFetching) return; // Prevent multiple simultaneous requests
+    if (_isFetching) return;
 
     _isFetching = true;
 
-    // For pagination, we only show loading if it's not a paginated request
+    // Show loading state if not paginating
     if (!isPagination) {
       emit(const SimilarState.loading());
     }
@@ -32,16 +31,22 @@ class SimilarCubit extends Cubit<SimilarState> {
     response.when(
       success: (data) {
         page++;
-        movies.addAll(data.results!);
+        if (data.results?.isEmpty ?? true) {
+          hasMore = false;
+        }
+        movies.addAll(data.results ?? []);
         emit(SimilarState.loaded(data: data));
       },
       failure: (error) => emit(SimilarState.error(error: error)),
     );
+
+    _isFetching = false;
   }
-    Future<void> refreshRecommendedMovies() async {
+
+  Future<void> refreshRecommendedMovies() async {
     page = 1;
     hasMore = true;
     movies.clear();
-    // await getSimilar();
+    // await getSimilar(widget.movie.id!);
   }
 }

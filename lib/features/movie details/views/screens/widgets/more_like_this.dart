@@ -19,18 +19,20 @@ class MoreLikeThis extends StatefulWidget {
 
 class _MoreLikeThisState extends State<MoreLikeThis> {
   final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
-    // TODO: implement     context.read<ReleasesCubit>().getReleases();
+    super.initState();
     context.read<SimilarCubit>().getSimilar(widget.movie.id!);
 
-    super.initState();
+    // Add a listener to the scroll controller for pagination
+    _scrollController.addListener(_onScroll);
   }
 
   @override
   void dispose() {
-    _scrollController
-        .dispose(); // Dispose the controller when the widget is destroyed
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -39,7 +41,6 @@ class _MoreLikeThisState extends State<MoreLikeThis> {
             _scrollController.position.maxScrollExtent &&
         context.read<SimilarCubit>().hasMore &&
         !(context.read<SimilarCubit>().state is LoadingSimilar)) {
-      // If the user has reached the end of the list, fetch the next page
       context
           .read<SimilarCubit>()
           .getSimilar(widget.movie.id!, isPagination: true);
@@ -53,45 +54,44 @@ class _MoreLikeThisState extends State<MoreLikeThis> {
       decoration: BoxDecoration(
         color: AppColors.appBar,
       ),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 198.h, // Set the height of the ListView
-
-            child: BlocBuilder<SimilarCubit, SimilarState>(
-                builder: (context, state) {
-              if (state is LoadingSimilar) {
-                return LoadingWidget();
-              } else if (state is LoadedSimilar) {
-                final releases = context.read<SimilarCubit>().movies;
-
-                return ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  controller: _scrollController,
-                  shrinkWrap: true,
-                  padding: EdgeInsets.symmetric(horizontal: 12.0.w),
-                  itemCount: releases.length +
-                      (context.read<SimilarCubit>().hasMore ? 1 : 0),
-                  itemBuilder: (context, index) {
-                    if (index < releases.length) {
-                      return RecommendedMoviePoster(
-                        movie: releases[index],
-                      );
-                    } else {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                  },
-                );
-              } else if (state is ErrorSimilar) {
-                return const Center(
-                  child: Text('Error'),
-                );
-              }
-
-              return Container();
-            }),
-          ),
-        ],
+      child: SizedBox(
+        height: 200.h,
+        child: BlocBuilder<SimilarCubit, SimilarState>(
+          builder: (context, state) {
+            // Show loading widget when no movies have been loaded yet
+            if (state is LoadingSimilar &&
+                context.read<SimilarCubit>().movies.isEmpty) {
+              return const LoadingWidget();
+            }
+            // Show movies once data is loaded
+            else if (state is LoadedSimilar) {
+              final releases = context.read<SimilarCubit>().movies;
+        
+              return ListView.builder(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollController,
+                shrinkWrap: true,
+                padding: EdgeInsets.symmetric(horizontal: 12.0.w),
+                itemCount: releases.length +
+                    (context.read<SimilarCubit>().hasMore ? 1 : 0),
+                itemBuilder: (context, index) {
+                  if (index < releases.length) {
+                    return RecommendedMoviePoster(movie: releases[index]);
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
+              );
+            }
+            // Handle error state
+            else if (state is ErrorSimilar) {
+              return const Center(child: Text('Error loading similar movies'));
+            }
+        
+            // Default case if no relevant state
+            return Container();
+          },
+        ),
       ),
     );
   }
