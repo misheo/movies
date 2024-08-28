@@ -7,7 +7,9 @@ class AppTheme {
     appBarTheme: AppBarTheme(
         backgroundColor: AppColors.appBar,
         centerTitle: true,
-        titleTextStyle: TextStyle(color: Colors.white)),
+        titleTextStyle: TextStyle(color: Colors.white) , 
+        iconTheme: IconThemeData(color: Colors.white)
+        ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
       backgroundColor: AppColors.appBar,

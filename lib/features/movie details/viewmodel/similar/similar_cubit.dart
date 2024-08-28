@@ -32,6 +32,7 @@ class SimilarCubit extends Cubit<SimilarState> {
     response.when(
       success: (data) {
         page++;
+        movies.addAll(data.results!);
         emit(SimilarState.loaded(data: data));
       },
       failure: (error) => emit(SimilarState.error(error: error)),
