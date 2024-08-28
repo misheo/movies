@@ -19,7 +19,7 @@ class PopularMovieRepoImpl implements PopularMovieRepo {
       return ApiResult.success(response) ;
       
     } on DioException catch (e) {
-      return ApiResult.failure(e.response?.data);
+      return ApiResult.failure(e.response?.statusMessage ?? 'error');
     }
   }
   
