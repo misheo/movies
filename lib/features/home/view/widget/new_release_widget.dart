@@ -41,6 +41,9 @@ class _NewReleaseWidgetState extends State<NewReleaseWidget> {
         !(context.read<ReleasesCubit>().state is LoadingReleases)) {
       // If the user has reached the end of the list, fetch the next page
       context.read<ReleasesCubit>().getReleases(isPagination: true);
+      setState(() {
+        
+      });
     }
   }
 
